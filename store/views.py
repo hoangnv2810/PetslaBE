@@ -88,6 +88,9 @@ def getProduct_Detail(request, id):
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    default_error_messages = {
+        'no_active_account': ('Sai mật khẩu hoặc tài khoản')
+    }
     def validate(self, attrs):
         data = super().validate(attrs)
         serializer = UserSerializerWithToken(self.user).data
