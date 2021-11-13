@@ -126,7 +126,7 @@ def getOrder(request):
     user = request.user
     try:
         order = Order.objects.get(user = user)
-        serializer = OrderSerializer(order, many = False)
+        serializer = OrderSerializer(order, many = True)
         return Response(serializer.data)
     except:
         return Response({'detail': 'Không có sản phẩm'})
