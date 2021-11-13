@@ -1,3 +1,4 @@
+import re
 from django.contrib.auth.models import update_last_login
 from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -118,3 +119,9 @@ def registerUser(request):
     except:
         message = {'detail': 'Người dùng đã tồn tại'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getUserProfile(request):
+    user = request.user
+    serializer = UserSerializer(user, many = False)
+    return Response(serializer.data)
