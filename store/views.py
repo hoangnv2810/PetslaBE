@@ -1,4 +1,3 @@
-import re
 from django.contrib.auth.models import update_last_login
 from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -16,12 +15,6 @@ from rest_framework.response import Response
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-
-@api_view(['GET'])
-def getOrders(request):
-    orders = Order.objects.all()
-    serializers = OrderSerializer(orders, many = True)
-    return Response(serializers.data)
 
 @api_view(['POST']) 
 @permission_classes([IsAuthenticated])
@@ -126,3 +119,14 @@ def getUserProfile(request):
     user = request.user
     serializer = UserSerializer(user, many = False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getOrder(request):
+    user = request.user
+    try:
+        order = Order.objects.get(user = user)
+        serializer = OrderSerializer(order, many = False)
+        return Response(serializer.data)
+    except:
+        return Response({'detail': 'Không có sản phẩm'})

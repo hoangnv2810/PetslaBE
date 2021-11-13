@@ -14,6 +14,6 @@ urlpatterns = [
     path('user/profile', views.getUserProfile, name = 'get-user-profile'),
 
     path('order/add/', views.addOrderItems, name='order-add'),
-    path('get/order/', views.getOrders, name="get-orders")
+    path('get/order/', views.getOrder, name = "get-order-id")
     
 ]
