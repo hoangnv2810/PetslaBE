@@ -21,7 +21,7 @@ class Product(models.Model):
     price = models.IntegerField()
     images = models.ImageField(upload_to='photos/products')
     stock = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE) #xoa danh muc thi san pham cung xoa
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
@@ -42,7 +42,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.user)
 
 
 class OrderItem(models.Model):
