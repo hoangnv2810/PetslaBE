@@ -31,6 +31,7 @@ def addOrderItems(request):
             number_phone = data['number_phone'],
             address = data['address'],
             total_price = data['total_price'], 
+            note = data['note'],
         )
 
         for i in orderItems:

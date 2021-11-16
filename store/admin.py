@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('product_name', 'category')
     ordering = ('created_date',)
     list_display_links = ('product_name',)
-    actions_on_top = False
+    actions_on_top = True
     list_per_page = 20
 
 class OrderItemAdmin(admin.ModelAdmin):
@@ -24,6 +24,7 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = ('user', 'number_phone',)
     list_filter = ('created_at', 'is_paid', 'is_delivered',)
     list_per_page = 20
+    
     readonly_fields = ('user',)
     list_display_links = ('user',)
     

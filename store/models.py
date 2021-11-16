@@ -35,6 +35,7 @@ class Order(models.Model):
     # email = models.EmailField(max_length=25, null=True, blank=True) #change null
     address = models.CharField(max_length=100, null=True)
     total_price = models.DecimalField(max_digits=9, decimal_places=0, null=True, blank=True)
+    note = models.TextField(max_length=200, null=True)
     is_paid = models.BooleanField(default=False)
     paid_at = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     is_delivered = models.BooleanField(default=False)
